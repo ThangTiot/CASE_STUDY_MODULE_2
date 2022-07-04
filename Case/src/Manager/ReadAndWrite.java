@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 public class ReadAndWrite<E> {
     public ArrayList<E> read(String path){
+        ArrayList<E> arrayList=new ArrayList<>();
         try {
             ObjectInputStream readFile = new ObjectInputStream(new FileInputStream(path));
-            ArrayList<E> arrayList = (ArrayList<E>) readFile.readObject();
+            arrayList = (ArrayList<E>) readFile.readObject();
             readFile.close();
-            return arrayList;
         }catch (Exception e) {
             e.getMessage();
         }
-        return new ArrayList<E>();
+        return arrayList;
     }
 
     public void write(String path, ArrayList<E> arrayList){

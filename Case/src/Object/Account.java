@@ -1,17 +1,17 @@
 package Object;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
     private String username;
     private String password;
-    private Customer customer;
 
     public Account() {
     }
 
-    public Account(String username, String password, Customer customer) {
+    public Account(String username, String password) {
         this.username = username;
         this.password = password;
-        this.customer = customer;
     }
 
     public String getUsername() {
@@ -30,11 +30,11 @@ public class Account {
         this.password = password;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    @Override
+    public String toString() {
+        return "{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

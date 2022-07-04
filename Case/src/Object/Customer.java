@@ -1,30 +1,34 @@
 package Object;
 
-public class Customer {
-    private static int ID = 1;
+import java.io.Serializable;
+
+public class Customer implements Serializable {
+    private static int ID_CUSTOMER = 1;
     private int id;
     private String name;
     private int age;
     private String gender;
     private String phoneNumber;
+    private Account account;
 
     public Customer() {
     }
 
-    public Customer(String name, int age, String gender, String phoneNumber) {
-        this.id = ID++;
+    public Customer(String name, int age, String gender, String phoneNumber, Account account) {
+        this.id = ID_CUSTOMER++;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
+        this.account = account;
     }
 
     public static int getID() {
-        return ID;
+        return ID_CUSTOMER;
     }
 
     public static void setID(int ID) {
-        Customer.ID = ID;
+        Customer.ID_CUSTOMER = ID;
     }
 
     public int getId() {
@@ -67,14 +71,22 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Override
     public String toString() {
-        return "Object.Customer{" +
+        return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", phoneNumber=" + phoneNumber +
-                ", account=" +
+                ", account=" + account +
                 '}';
     }
 }
