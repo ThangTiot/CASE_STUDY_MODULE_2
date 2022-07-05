@@ -4,6 +4,8 @@ import Object.Product;
 import System.CRUD;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ProductManage implements CRUD<Product> {
@@ -66,6 +68,7 @@ public class ProductManage implements CRUD<Product> {
         product.setName(name);
         product.setPrice(price);
         product.setAmount(amount);
+        readAndWriteProduct.write(path,productArrayList);
     }
 
     @Override
@@ -78,6 +81,7 @@ public class ProductManage implements CRUD<Product> {
             productArrayList.remove(product);
             System.out.println("Xóa sản phẩm thành công!");
         }
+        readAndWriteProduct.write(path,productArrayList);
     }
     public Product searchByID(String id) {
         for (Product product : productArrayList) {
@@ -87,12 +91,40 @@ public class ProductManage implements CRUD<Product> {
         }
         return null;
     }
+    public ArrayList<Product> searchByName(String name) {
+        ArrayList<Product> products = new ArrayList<>();
+        for (Product product : productArrayList) {
+            String productName = product.getName().toUpperCase();
+            if (productName.contains(name)) {
+                System.out.println(product);
+                products.add(product);
+            }
+        }
+        return products;
+    }
+
+    public ArrayList<Product> sortByIncrementalPrice(ArrayList<Product> products) {
+        Collections.sort(products);
+        return products;
+    }
+
+    public ArrayList<Product> sortByDescendPrice(ArrayList<Product> products) {
+        ArrayList<Product> newProducts = sortByIncrementalPrice(products);
+        Collections.reverse(newProducts);
+        return newProducts;
+    }
 
     public boolean checkIDProduct(String id) {
         if (searchByID(id) != null) {
             return true;
         }
         return false;
+    }
+
+    public void display(ArrayList<Product> products) {
+        for (Product product : products) {
+            System.out.println(product);
+        }
     }
 
     @Override

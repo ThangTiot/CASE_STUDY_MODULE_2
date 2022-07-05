@@ -6,13 +6,13 @@ public class Order {
     public static int ID_ORDER = 1;
     private int id;
     private Customer customer;
-    private Product product;
+    private ArrayList<Product> product;
     private String status = "Chưa thanh toán!";
 
     public Order() {
     }
 
-    public Order(Customer customer, Product product) {
+    public Order(Customer customer, ArrayList<Product> product) {
         this.id = ID_ORDER++;
         this.customer = customer;
         this.product = product;
@@ -34,11 +34,11 @@ public class Order {
         this.customer = customer;
     }
 
-    public Product getProduct() {
+    public ArrayList<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ArrayList<Product> product) {
         this.product = product;
     }
 

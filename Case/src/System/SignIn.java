@@ -2,14 +2,14 @@ package System;
 import Manager.AccountManage;
 import Object.Customer;
 
-public class LogIn {
+public class SignIn {
     AccountManage accountManage;
 
-    public LogIn() {
+    public SignIn() {
         accountManage = new AccountManage();
     }
 
-    public Customer login(String userName, String password) {
+    public Customer signIn(String userName, String password) {
         Customer customer = accountManage.checkUserName(userName);
         if (customer != null && customer.getAccount().getUsername().equals(userName)) {
             if (customer.getAccount().getPassword().equals(password)) {

@@ -65,6 +65,7 @@ public class CustomerManage implements CRUD<Customer>{
     public void add(Customer customer) {
         customerArrayList.add(customer);
         readAndWriteCustomer.write(path,customerArrayList);
+        System.out.println("Tạo tài khoản thành công!");
     }
 
     @Override
@@ -108,6 +109,7 @@ public class CustomerManage implements CRUD<Customer>{
         customer.setAge(age);
         customer.setGender(gender);
         customer.setPhoneNumber(phoneNumber);
+        readAndWriteCustomer.write(path,customerArrayList);
     }
 
     @Override
