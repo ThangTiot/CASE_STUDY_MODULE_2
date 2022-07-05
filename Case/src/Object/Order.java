@@ -3,32 +3,43 @@ package Object;
 import java.util.ArrayList;
 
 public class Order {
-    private Account account;
-    private ArrayList<Product> products;
-    private String status = "Chưa thanh toán";
+    public static int ID_ORDER = 1;
+    private int id;
+    private Customer customer;
+    private Product product;
+    private String status = "Chưa thanh toán!";
 
     public Order() {
     }
 
-    public Order(Account account, ArrayList<Product> products) {
-        this.account = account;
-        this.products = products;
+    public Order(Customer customer, Product product) {
+        this.id = ID_ORDER++;
+        this.customer = customer;
+        this.product = product;
     }
 
-    public Account getAccount() {
-        return account;
+    public int getId() {
+        return id;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public String getStatus() {
@@ -37,5 +48,15 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", product=" + product +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

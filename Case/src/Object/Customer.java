@@ -3,7 +3,7 @@ package Object;
 import java.io.Serializable;
 
 public class Customer implements Serializable {
-    private static int ID_CUSTOMER = 1;
+    public static int ID_CUSTOMER = 1;
     private int id;
     private String name;
     private int age;
@@ -21,14 +21,6 @@ public class Customer implements Serializable {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.account = account;
-    }
-
-    public static int getID() {
-        return ID_CUSTOMER;
-    }
-
-    public static void setID(int ID) {
-        Customer.ID_CUSTOMER = ID;
     }
 
     public int getId() {

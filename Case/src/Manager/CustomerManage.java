@@ -24,28 +24,31 @@ public class CustomerManage implements CRUD<Customer>{
 
     @Override
     public Customer creat() {
-        System.out.println("Full name: ");
+        if (customerArrayList.size() != 0) {
+            Customer.ID_CUSTOMER = customerArrayList.get((customerArrayList.size() - 1)).getId() + 1;
+        }
+        System.out.println("Họ và tên: ");
         String name = scanner.nextLine();
-        System.out.println("Age: ");
+        System.out.println("Tuổi: ");
         int age = Integer.parseInt(scanner.nextLine());
-        System.out.println("Gender: ");
-        System.out.println("1. Male.");
-        System.out.println("2. Female.");
-        System.out.println("3. Other.");
+        System.out.println("Giới tính: ");
+        System.out.println("1. Nam");
+        System.out.println("2. Nữ");
+        System.out.println("3. Khác");
         int choice = Integer.parseInt(scanner.nextLine());
         String gender = "";
         switch (choice) {
             case 1:
-                gender = "Male";
+                gender = "Nam";
                 break;
             case 2:
-                gender = "Female";
+                gender = "Nữ";
                 break;
             case 3:
-                gender = "Other";
+                gender = "Khác";
                 break;
         }
-        System.out.println("Phone Number:");
+        System.out.println("Số điện thoại: ");
         String phoneNumber = scanner.nextLine();
         boolean check = verified.verifiedPhoneNumber(phoneNumber);
         while (!check) {
@@ -66,36 +69,34 @@ public class CustomerManage implements CRUD<Customer>{
 
     @Override
     public void displayAll() {
-//        customerArrayList = readAndWriteCustomer.read(path);
         for (Customer customer : customerArrayList) {
             System.out.println(customer);
         }
     }
 
-    @Override
     public void update(Customer customer) {
-        System.out.println("Full name: ");
+        System.out.println("Họ và tên: ");
         String name = scanner.nextLine();
-        System.out.println("Age: ");
+        System.out.println("Tuổi: ");
         int age = Integer.parseInt(scanner.nextLine());
-        System.out.println("Gender: ");
-        System.out.println("1. Male.");
-        System.out.println("2. Female.");
-        System.out.println("3. Other.");
+        System.out.println("Giới tính: ");
+        System.out.println("1. Nam");
+        System.out.println("2. Nữ");
+        System.out.println("3. Khác");
         int choice = Integer.parseInt(scanner.nextLine());
         String gender = "";
         switch (choice) {
             case 1:
-                gender = "Male";
+                gender = "Nam";
                 break;
             case 2:
-                gender = "Female";
+                gender = "Nữ";
                 break;
             case 3:
-                gender = "Other";
+                gender = "Khác";
                 break;
         }
-        System.out.println("Phone Number:");
+        System.out.println("Số điện thoại: ");
         String phoneNumber = scanner.nextLine();
         boolean check = verified.verifiedPhoneNumber(phoneNumber);
         while (!check) {
@@ -110,14 +111,25 @@ public class CustomerManage implements CRUD<Customer>{
     }
 
     @Override
+    public Customer searchByID(int id) {
+        for (Customer customer : customerArrayList) {
+            if (customer.getId() == id) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void delete(Customer customer) {
-        System.out.println("Bạn có muốn xóa không?");
+        System.out.println("Bạn có muốn xóa khách hàng này không?");
         System.out.println("1. Có");
         System.out.println("2. Không");
         int choice = Integer.parseInt(scanner.nextLine());
         if (choice == 1) {
             customerArrayList.remove(customer);
-            System.out.println("Xóa thành công!");
+            System.out.println("Xóa khách hàng thành công!");
         }
+        readAndWriteCustomer.write(path,customerArrayList);
     }
 }

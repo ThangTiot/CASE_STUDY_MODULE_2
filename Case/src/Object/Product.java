@@ -1,28 +1,26 @@
 package Object;
 
 public class Product {
-    private int id;
+    private String id;
     private String name;
     private int price;
     private int amount;
-    private Category category;
 
     public Product() {
     }
 
-    public Product(int id, String name, int price, int amount, Category category) {
+    public Product(String id, String name, int price, int amount) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.amount = amount;
-        this.category = category;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -50,14 +48,6 @@ public class Product {
         this.amount = amount;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     @Override
     public String toString() {
         return "Object.Product{" +
@@ -65,7 +55,6 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", amount=" + amount +
-                ", category=" + category +
                 '}';
     }
 }

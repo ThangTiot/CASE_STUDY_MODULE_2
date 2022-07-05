@@ -13,4 +13,6 @@ public interface CRUD<E> {
     void update(E e);
 
     void delete(E e);
+
+    E searchByID(int id);
 }

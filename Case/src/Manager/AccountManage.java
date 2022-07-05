@@ -56,15 +56,11 @@ public class AccountManage{
     }
 
     public Customer checkUserName(String userName){
-        try {
             for (Customer customer : CustomerManage.customerArrayList) {
                 if (customer.getAccount().getUsername().equals(userName)) {
                     return customer;
                 }
             }
-        } catch (Exception e) {
-            e.getMessage();
-        }
         return null;
     }
 }

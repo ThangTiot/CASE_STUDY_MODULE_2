@@ -1,6 +1,7 @@
 package System;
 
 import Manager.CustomerManage;
+import Object.Customer;
 
 import java.util.Scanner;
 
@@ -22,6 +23,10 @@ public class Main {
                 case 2:
                     break;
                 case 3:
+                    System.out.println("Nhap id muon xoa");
+                    int id = Integer.parseInt(scanner.nextLine());
+                    Customer customer = customerManage.searchByID(id);
+                    customerManage.delete(customer);
                     break;
                 case 4:
                     customerManage.displayAll();
