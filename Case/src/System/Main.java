@@ -15,6 +15,7 @@ public class Main {
         int choice;
         do {
             System.out.println("*-*-*-*-*-*-* BÁCH HÓA VÔ DỤNG XIN CHÀO *-*-*-*-*-*-*");
+            System.out.println("*-*-*-*-THỨ GÌ BẠN CẦN CHÚNG TÔI ĐỀU KHÔNG CÓ *-*-*-*");
             System.out.println("1. Đăng nhập.");
             System.out.println("2. Đăng kí.");
             System.out.println("3. Thoát.");
@@ -34,7 +35,7 @@ public class Main {
                         } else {
                             customer = signIn.signIn(userName, password);
                             if (customer != null) {
-                                menuManage.menuCustomer();
+                                menuManage.menuCustomer(customer);
                             } else {
                                 check = false;
                                 count++;
@@ -47,7 +48,7 @@ public class Main {
                 case 2:
                     customer = customerManage.creat();
                     customerManage.add(customer);
-                    menuManage.menuCustomer();
+                    menuManage.menuCustomer(customer);
                     break;
                 case 3:
                     System.exit(3);

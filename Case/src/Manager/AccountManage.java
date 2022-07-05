@@ -53,6 +53,8 @@ public class AccountManage{
         }
         account.setUsername(userName);
         account.setPassword(password);
+        System.out.println("Thay đổi đã được ghi nhận!");
+        CustomerManage.readAndWriteCustomer.write(CustomerManage.path,CustomerManage.customerArrayList);
     }
 
     public Customer checkUserName(String userName){

@@ -76,11 +76,11 @@ public class CustomerManage implements CRUD<Customer>{
     }
 
     public void update(Customer customer) {
-        System.out.println("Họ và tên: ");
+        System.out.println("Họ và tên mới: ");
         String name = scanner.nextLine();
-        System.out.println("Tuổi: ");
+        System.out.println("Tuổi mới: ");
         int age = Integer.parseInt(scanner.nextLine());
-        System.out.println("Giới tính: ");
+        System.out.println("Giới tính mới: ");
         System.out.println("1. Nam");
         System.out.println("2. Nữ");
         System.out.println("3. Khác");
@@ -97,7 +97,7 @@ public class CustomerManage implements CRUD<Customer>{
                 gender = "Khác";
                 break;
         }
-        System.out.println("Số điện thoại: ");
+        System.out.println("Số điện thoại mới: ");
         String phoneNumber = scanner.nextLine();
         boolean check = verified.verifiedPhoneNumber(phoneNumber);
         while (!check) {
@@ -109,6 +109,7 @@ public class CustomerManage implements CRUD<Customer>{
         customer.setAge(age);
         customer.setGender(gender);
         customer.setPhoneNumber(phoneNumber);
+        System.out.println("Thay đổi đã được ghi nhận!");
         readAndWriteCustomer.write(path,customerArrayList);
     }
 
