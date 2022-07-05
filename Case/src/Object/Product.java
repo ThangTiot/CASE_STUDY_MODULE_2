@@ -1,6 +1,8 @@
 package Object;
 
-public class Product implements Comparable<Product>{
+import java.io.Serializable;
+
+public class Product implements Comparable<Product>, Serializable {
     private String id;
     private String name;
     private int price;
@@ -55,7 +57,7 @@ public class Product implements Comparable<Product>{
 
     @Override
     public String toString() {
-        return "Object.Product{" +
+        return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +

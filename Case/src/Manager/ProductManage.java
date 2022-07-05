@@ -95,8 +95,7 @@ public class ProductManage implements CRUD<Product> {
         ArrayList<Product> products = new ArrayList<>();
         for (Product product : productArrayList) {
             String productName = product.getName().toUpperCase();
-            if (productName.contains(name)) {
-                System.out.println(product);
+            if (productName.contains(name.toUpperCase())) {
                 products.add(product);
             }
         }

@@ -21,8 +21,10 @@ public class Main {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    boolean check = true;
+                    boolean check;
+                    int count = 0;
                     do {
+                        check = true;
                         System.out.println("User Name: ");
                         String userName = scanner.nextLine();
                         System.out.println("Password: ");
@@ -35,19 +37,23 @@ public class Main {
                                 menuManage.menuCustomer();
                             } else {
                                 check = false;
+                                count++;
                                 System.out.println("Tên đăng nhập hoặc mật khẩu không đúng!");
-                                System.out.println("Thử lại!");
+                                System.out.println("Thử lại! Số lần thử còn lại: " + (3 - count));
                             }
                         }
-                    } while (!check);
+                    } while (!check && count < 3);
                     break;
                 case 2:
+                    customer = customerManage.creat();
+                    customerManage.add(customer);
+                    menuManage.menuCustomer();
                     break;
                 case 3:
-
+                    System.exit(3);
                     break;
-                case 4:
-                    customerManage.displayAll();
+                default:
+                    System.out.println("Lựa chọn không hợp lệ!");
             }
         } while (choice != 0);
     }

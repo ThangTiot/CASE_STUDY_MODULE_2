@@ -9,22 +9,23 @@ import Object.Product;
 public class MenuManage {
     CustomerManage customerManage;
     ProductManage productManage;
-
-    public MenuManage() {
-
-    }
-
     Scanner scanner;
 
+    public MenuManage() {
+        scanner = new Scanner(System.in);
+        customerManage = new CustomerManage();
+        productManage = new ProductManage();
+    }
+
     public void menuAdmin() {
-        int choice;
+        int choiceMenu;
         do {
             System.out.println("---------- CHÀO MỪNG SẾP ------------");
             System.out.println("1. Thao tác với khách hàng.");
             System.out.println("2. Thao tác với sản phẩm.");
             System.out.println("3. Đăng xuất.");
-            choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
+            choiceMenu = Integer.parseInt(scanner.nextLine());
+            switch (choiceMenu) {
                 case 1:
                     int choiceCustomer;
                     do {
@@ -42,10 +43,13 @@ public class MenuManage {
                                 int id = Integer.parseInt(scanner.nextLine());
                                 System.out.println(customerManage.searchByID(id));
                                 break;
+                            case 3:
+                                break;
                             default:
                                 System.out.println("Lựa chọn không hợp lệ!");
                         }
                     } while (choiceCustomer != 3);
+                    break;
                 case 2:
                     int choiceProduct;
                     do {
@@ -97,13 +101,18 @@ public class MenuManage {
                                 productManage.delete(productManage.searchByID(idDeleteProduct));
                                 productManage.displayAll();
                                 break;
+                            case 7:
+                                break;
                             default:
                                 System.out.println("Lựa chọn không hợp lệ!");
                                 break;
                         }
                     } while (choiceProduct != 7);
+                    break;
+                case 3:
+                    break;
             }
-        } while (choice != 3);
+        } while (choiceMenu != 3);
     }
 
     public void menuCustomer() {
