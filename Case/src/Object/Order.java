@@ -62,7 +62,8 @@ public class Order implements Serializable {
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
-    public String changeBalanceOrder(){
+
+    public String changeBalanceOrder() {
         int a = totalPrice;
         Locale locale = new Locale("vi", "VN");
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
@@ -71,20 +72,23 @@ public class Order implements Serializable {
     }
 
     public String displayProducts() {
-        String s = "";
-        for (Product product : products) {
-            s += (product + "\n     ");
+        String s = "         ";
+        for (int i = 0; i < products.size(); i++) {
+            if (i == (products.size() - 1)) {
+                s += products.get(i);
+            } else {
+                s += (products.get(i) + "\n         ");
+            }
         }
         return s;
     }
 
     @Override
     public String toString() {
-        return  "Mã đơn hàng: " + id +
+        return "* Mã đơn hàng: " + id +
                 "\n    " + customer +
-                "\n    Đơn hàng: \n     " + displayProducts() +
-                "\n    Tổng đơn: " + changeBalanceOrder() +
-                ", Trạng thái đơn hàng: '" + status + '\'' +
-                '}';
+                "\n    - Đơn hàng: \n" + displayProducts() +
+                "\n    - Tổng đơn: " + changeBalanceOrder() +
+                "/ Trạng thái đơn hàng: '" + status + '\'';
     }
 }

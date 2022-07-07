@@ -132,7 +132,7 @@ public class OrderManage implements CRUD<Order> {
         for (Product product : orderProducts) {
             System.out.println(product);
         }
-        System.out.println("Tổng tiền: " + changeBalanceTotalPrice());
+        System.out.println("- Tổng tiền: " + changeBalanceTotalPrice());
     }
 
     public void displayOrderByID(Order order) {
@@ -140,12 +140,12 @@ public class OrderManage implements CRUD<Order> {
     }
 
     public void displayOrder(Order order) {
-        System.out.println("Mã đơn hàng: " + order.getId());
+        System.out.println("* Mã đơn hàng: " + order.getId());
         for (Product product : order.getProducts()) {
             System.out.println("    " + product);
         }
-        System.out.println("    Tổng đơn: " + order.changeBalanceOrder());
-        System.out.println("    Tình trạng đơn hàng: " + order.getStatus());
+        System.out.println("    - Tổng đơn: " + order.changeBalanceOrder());
+        System.out.println("    - Tình trạng đơn hàng: " + order.getStatus());
     }
     public ArrayList<Order> searchOrderOfCustomerByID(int id) {
         ArrayList<Order> orders = new ArrayList<>();

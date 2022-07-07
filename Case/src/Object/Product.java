@@ -73,7 +73,7 @@ public class Product implements Comparable<Product>, Serializable, Cloneable {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "+ Product {" +
                 "ID: " + id +
                 ", Tên: '" + name + '\'' +
                 ", Giá: " + changeBalanceProduct() +

@@ -73,7 +73,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "Customer {" +
+        return "- Customer {" +
                 "ID: " + id +
                 ", Tên: '" + name + '\'' +
                 ", Tuổi: " + age +
