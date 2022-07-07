@@ -51,20 +51,12 @@ public class ProductManage implements CRUD<Product> {
 
     @Override
     public void update(Product product) {
-        System.out.println("Nhập mã sản phẩm: ");
-        String id = scanner.nextLine();
-        while (checkIDProduct(id)) {
-            System.out.println("Mã sản phẩm đã tồn tại.");
-            System.out.println("Nhập lại mã: ");
-            id = scanner.nextLine();
-        }
-        System.out.println("Tên sản phẩm: ");
+        System.out.println("Tên mới: ");
         String name = scanner.nextLine();
-        System.out.println("Giá sản phẩm: ");
+        System.out.println("Giá mới: ");
         int price = Integer.parseInt(scanner.nextLine());
-        System.out.println("Số lượng sản phẩm: ");
+        System.out.println("Số lượng mới: ");
         int amount = Integer.parseInt(scanner.nextLine());
-        product.setId(id);
         product.setName(name);
         product.setPrice(price);
         product.setAmount(amount);

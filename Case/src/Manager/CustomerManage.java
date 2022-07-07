@@ -101,7 +101,7 @@ public class CustomerManage implements CRUD<Customer>{
         String phoneNumber = scanner.nextLine();
         boolean check = verified.verifiedPhoneNumber(phoneNumber);
         while (!check) {
-            System.out.println("Sai số điện thoại! \n Nhập lại: ");
+            System.out.println("Sai định dạng số điện thoại! \n Nhập lại: ");
             phoneNumber = scanner.nextLine();
             check = verified.verifiedPhoneNumber(phoneNumber);
         }

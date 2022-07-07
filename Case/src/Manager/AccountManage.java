@@ -17,17 +17,17 @@ public class AccountManage{
     }
 
     public Account creat() {
-        System.out.println("UserName:");
+        System.out.println("Tên đăng nhập:");
         String userName = scanner.nextLine();
         while (checkUserName(userName) != null) {
             System.out.println("Tên đã tồn tại!\n Nhập tên khác: ");
             userName = scanner.nextLine();
         }
-        System.out.println("Password:\n Chú ý: Tối thiểu 8 kí tự chữ hoặc số, bắt đầu bằng kí tự viết hoa.");
+        System.out.println("Mật khẩu:\n Chú ý: Tối thiểu 8 kí tự chữ hoặc số, bắt đầu bằng kí tự viết hoa.");
         String password = scanner.nextLine();
         boolean check = verifier.verifiedPassword(password);
         while (!check) {
-            System.out.println("Password không hợp lệ! \n Nhập lại password: ");
+            System.out.println("Mật khẩu không hợp lệ! \n Nhập lại mật khẩu: ");
             password = scanner.nextLine();
             check = verifier.verifiedPassword(password);
         }
@@ -37,17 +37,17 @@ public class AccountManage{
 
 
     public void update(Account account) {
-        System.out.println("UserName:");
+        System.out.println("Tên đăng nhập mới:");
         String userName = scanner.nextLine();
         while (checkUserName(userName) != null) {
             System.out.println("Tên đã tồn tại!\n Nhập tên khác: ");
             userName = scanner.nextLine();
         }
-        System.out.println("Password:\n Chú ý: Tối thiểu 8 kí tự chữ hoặc số, bắt đầu bằng kí tự viết hoa.");
+        System.out.println("Mật khẩu mới:\n Chú ý: Tối thiểu 8 kí tự chữ hoặc số, bắt đầu bằng kí tự viết hoa.");
         String password = scanner.nextLine();
         boolean check = verifier.verifiedPassword(password);
         while (!check) {
-            System.out.println("Password không hợp lệ! \n Nhập lại password: ");
+            System.out.println("Mật khẩu không hợp lệ! \n Nhập lại mật khẩu: ");
             password = scanner.nextLine();
             check = verifier.verifiedPassword(password);
         }

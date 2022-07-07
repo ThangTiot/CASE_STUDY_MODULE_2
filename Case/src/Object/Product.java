@@ -1,6 +1,8 @@
 package Object;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Product implements Comparable<Product>, Serializable, Cloneable {
     private String id;
@@ -61,13 +63,20 @@ public class Product implements Comparable<Product>, Serializable, Cloneable {
             return null;
         }
     }
+    public String changeBalanceProduct(){
+        int a = price;
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+        String accountBalance = numberFormat.format(a);
+        return accountBalance;
+    }
 
     @Override
     public String toString() {
         return "Product{" +
                 "ID: " + id +
                 ", Tên: '" + name + '\'' +
-                ", Giá: " + price + " VND" +
+                ", Giá: " + changeBalanceProduct() +
                 ", Số lượng: " + amount +
                 '}';
     }

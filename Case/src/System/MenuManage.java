@@ -27,7 +27,9 @@ public class MenuManage {
     public void menuAdmin() {
         int choiceMenu;
         do {
+            System.out.println("------------------------------------");
             System.out.println("---------- XIN CHÀO SẾP ------------");
+            System.out.println("------------------------------------");
             System.out.println("1. Thao tác với khách hàng.");
             System.out.println("2. Thao tác với sản phẩm.");
             System.out.println("3. Thao tác với đơn hàng.");
@@ -35,101 +37,13 @@ public class MenuManage {
             choiceMenu = Integer.parseInt(scanner.nextLine());
             switch (choiceMenu) {
                 case 1:
-                    int choiceCustomer;
-                    do {
-                        System.out.println("---------- XIN CHÀO SẾP ------------");
-                        System.out.println("1. Xem toàn bộ khách hàng.");
-                        System.out.println("2. Tìm kiếm khách hàng qua ID.");
-                        System.out.println("3. Xóa khách hàng qua ID.");
-                        System.out.println("4. Thoát.");
-                        choiceCustomer = Integer.parseInt(scanner.nextLine());
-                        switch (choiceCustomer) {
-                            case 1:
-                                customerManage.displayAll();
-                                break;
-                            case 2:
-                                searchCustomerByID();
-                                break;
-                            case 3:
-                                deleteCustomerByID();
-                            case 4:
-                                break;
-                            default:
-                                System.out.println("Lựa chọn không hợp lệ!");
-                        }
-                    } while (choiceCustomer != 4);
+                    menuAdmin1();
                     break;
                 case 2:
-                    int choiceProduct;
-                    do {
-                        System.out.println("---------- CHÀO MỪNG SẾP ------------");
-                        System.out.println("1. Thêm sản phẩm.");
-                        System.out.println("2. Tìm kiếm sản phẩm qua mã sản phẩm.");
-                        System.out.println("3. Tìm kiếm sản phẩm theo tên bât kỳ.");
-                        System.out.println("4. Hiển thị toàn bộ kho hàng.");
-                        System.out.println("5. Sửa thông tin sản phẩm.");
-                        System.out.println("6. Xóa sản phẩm.");
-                        System.out.println("7. Thoát.");
-                        choiceProduct = Integer.parseInt(scanner.nextLine());
-                        switch (choiceProduct) {
-                            case 1:
-                                createProduct();
-                                break;
-                            case 2:
-                                searchProductByID();
-                                break;
-                            case 3:
-                                searchProductByName();
-                                break;
-                            case 4:
-                                productManage.displayAll();
-                                break;
-                            case 5:
-                                updateProductByID();
-                                break;
-                            case 6:
-                                deleteProductByID();
-                                break;
-                            case 7:
-                                break;
-                            default:
-                                System.out.println("Lựa chọn không hợp lệ!");
-                                break;
-                        }
-                    } while (choiceProduct != 7);
+                    menuAdmin2();
                     break;
                 case 3:
-                    int choiceOrder;
-                    do {
-                        System.out.println("---------- XIN CHÀO SẾP ------------");
-                        System.out.println("1. Xem toàn bộ đơn hàng.");
-                        System.out.println("2. Tìm kiếm đơn hàng qua mã đơn hàng.");
-                        System.out.println("3. Tìm kiếm đơn hàng qua ID khách hàng.");
-                        System.out.println("4. Thoát.");
-                        choiceOrder = Integer.parseInt(scanner.nextLine());
-                        switch (choiceOrder) {
-                            case 1:
-                                orderManage.displayAll();
-                                break;
-                            case 2:
-                                System.out.println("Nhập mã đơn hàng muốn tìm: ");
-                                int idOrder = Integer.parseInt(scanner.nextLine());
-                                orderManage.displayOrderByID(orderManage.searchByID(idOrder));
-                                break;
-                            case 3:
-                                System.out.println("Nhập ID khách hàng: ");
-                                int idCustomerOfOrder = Integer.parseInt(scanner.nextLine());
-                                ArrayList<Order> orders = orderManage.searchOrderOfCustomerByID(idCustomerOfOrder);
-                                for (Order order : orders) {
-                                    orderManage.displayOrder(order);
-                                }
-                                break;
-                            case 4:
-                                break;
-                            default:
-                                System.out.println("Lựa chọn không hợp lệ!");
-                        }
-                    } while (choiceOrder != 4);
+                    menuAdmin3();
                     break;
                 case 4:
                     break;
@@ -140,150 +54,19 @@ public class MenuManage {
     public void menuCustomer(Customer customer) {
         int choice;
         do {
+            System.out.println("--------------------------------------------------------------");
             System.out.println("---------- CHÀO MỪNG BẠN ĐẾN VỚI BÁCH HÓA VÔ DỤNG ------------");
+            System.out.println("--------------------------------------------------------------");
             System.out.println("1. Thay đổi thông tin cá nhân.");
             System.out.println("2. Bắt đầu mua sắm.");
             System.out.println("3. Đăng xuất.");
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    int choiceChangeInfo;
-                    do {
-                        System.out.println(customer);
-                        System.out.println("1. Thay đổi thông tin cá nhân.");
-                        System.out.println("2. Thay đổi thông tin tài khoản.");
-                        System.out.println("3. Hoàn thành.");
-                        choiceChangeInfo = Integer.parseInt(scanner.nextLine());
-                        switch (choiceChangeInfo) {
-                            case 1:
-                                customerManage.update(customer);
-                                break;
-                            case 2:
-                                Account account = customer.getAccount();
-                                accountManage.update(account);
-                                break;
-                            case 3:
-                                break;
-                            default:
-                                System.out.println("Lựa chọn không hợp lệ!");
-                                break;
-                        }
-                    } while (choiceChangeInfo != 3);
+                    menuCustomer1(customer);
                     break;
                 case 2:
-                    int choiceProduct;
-                    do {
-                        System.out.println("---------- CHÀO MỪNG BẠN ĐẾN VỚI BÁCH HÓA VÔ DỤNG ------------");
-                        System.out.println("1. Hiển thị toàn bộ sản phẩm.");
-                        System.out.println("2. Tìm kiếm sản phẩm qua mã sản phẩm.");
-                        System.out.println("3. Tìm kiếm sản phẩm theo tên bât kỳ.");
-                        System.out.println("4. Thêm sản phẩm vào giỏ hàng");
-                        System.out.println("5. Xem giỏ hàng.");
-                        System.out.println("6. Kiểm tra tình trạng đơn hàng.");
-                        System.out.println("7. Thoát.");
-                        choiceProduct = Integer.parseInt(scanner.nextLine());
-                        switch (choiceProduct) {
-                            case 1:
-                                productManage.displayAll();
-                                break;
-                            case 2:
-                                searchProductByID();
-                                break;
-                            case 3:
-                                searchProductByName();
-                                break;
-                            case 4:
-                                System.out.println("Nhập mã sản phẩm muốn mua:");
-                                String idOrderProduct = scanner.nextLine();
-                                Product product = productManage.searchByID(idOrderProduct);
-                                while (!productManage.checkIDProduct(idOrderProduct)) {
-                                    System.out.println("Mã sản phẩm không tồn tại.");
-                                    System.out.println("Nhập lại mã sản phẩm:");
-                                    idOrderProduct = scanner.nextLine();
-                                }
-                                System.out.println("Số lượng muốn mua: ");
-                                int amountOrderProduct = Integer.parseInt(scanner.nextLine());
-                                while (product.getAmount() < amountOrderProduct) {
-                                    System.out.println("Số lượng vượt quá kho hàng có!");
-                                    System.out.println("Nhập lại số lượng muốn mua (<" + product.getAmount() + "): ");
-                                    amountOrderProduct = Integer.parseInt(scanner.nextLine());
-                                }
-                                if (orderManage.checkProductInCart(idOrderProduct) != null) {
-                                    Product productExist = orderManage.checkProductInCart(idOrderProduct);
-                                    int amountOrderProductExist = productExist.getAmount();
-                                    while (product.getAmount() < (amountOrderProduct + amountOrderProductExist)) {
-                                        System.out.println("Số lượng vượt quá kho hàng có!");
-                                        System.out.println("Nhập lại số lượng muốn mua (<" + (product.getAmount() - amountOrderProductExist) + "): ");
-                                        amountOrderProduct = Integer.parseInt(scanner.nextLine());
-                                    }
-                                    productExist.setAmount(productExist.getAmount() + amountOrderProduct);
-                                } else {
-                                    orderManage.addToCart(product, amountOrderProduct);
-                                }
-                                break;
-                            case 5:
-                                if (orderManage.getOrderProducts().size() == 0) {
-                                    System.out.println("Bạn chưa có sản phẩm nào trong giỏ hàng!");
-                                    System.out.println("Hãy quay lại mua sắm nhé.");
-                                } else {
-                                    orderManage.displayCart();
-                                    System.out.println("1. Đặt hàng.");
-                                    System.out.println("2. Xóa giỏ hàng.");
-                                    System.out.println("3. Tiếp tục mua sắm.");
-                                    int choiceOrder = Integer.parseInt(scanner.nextLine());
-                                    switch (choiceOrder) {
-                                        case 1:
-                                            Order order = orderManage.creatOrder(customer);
-                                            orderManage.order(order);
-                                            orderManage.setOrderProducts(new ArrayList<>());
-                                            System.out.println("1. Thanh toán.");
-                                            System.out.println("2. Thanh toán sau.");
-                                            int choicePay = Integer.parseInt(scanner.nextLine());
-                                            if (choicePay == 1) {
-                                                for (Order orderInList : OrderManage.orderArrayList) {
-                                                    if ((order.getId() == orderInList.getId())) {
-                                                        orderManage.pay(orderInList);
-                                                    }
-                                                }
-                                            }
-                                            break;
-                                        case 2:
-                                            orderManage.setOrderProducts(new ArrayList<>());
-                                            System.out.println("Đã xóa giỏ hàng.");
-                                            break;
-                                        case 3:
-                                            break;
-                                    }
-                                }
-                                break;
-                            case 6:
-                                ArrayList<Order> orders = orderManage.searchOrderOfCustomerByID(customer.getId());
-                                for (Order order : orders) {
-                                    orderManage.displayOrder(order);
-                                }
-                                for (Order order : orders) {
-                                    if (order.getStatus().equals("Chưa thanh toán!")) {
-                                        System.out.println("Đơn hàng " + order.getId() + " của bạn chưa được thanh toán.");
-                                        System.out.println("Bạn có muốn thanh toán không: ");
-                                        System.out.println("1. Có.");
-                                        System.out.println("2. Không.");
-                                        System.out.println("3. Hủy đơn.");
-                                        int choicePayOrder = Integer.parseInt(scanner.nextLine());
-                                        if (choicePayOrder == 1) {
-                                            orderManage.pay(order);
-                                        } else if (choicePayOrder == 3) {
-                                            orderManage.delete(order);
-                                        }
-                                    }
-                                }
-                                break;
-                            case 7:
-                                break;
-                            default:
-                                System.out.println("Lựa chọn không hợp lệ!");
-                                break;
-                        }
-                    } while (choiceProduct != 7);
+                    menuCustomer2(customer);
                     break;
                 case 3:
                     break;
@@ -292,6 +75,114 @@ public class MenuManage {
                     break;
             }
         } while (choice != 3);
+    }
+
+//CÁC LỰA CHỌN CỦA ADMIN *******************************************************
+
+    public void menuAdmin1() {
+        int choiceCustomer;
+        do {
+            System.out.println("------------------------------------");
+            System.out.println("---------- XIN CHÀO SẾP ------------");
+            System.out.println("------------------------------------");
+            System.out.println("1. Xem toàn bộ khách hàng.");
+            System.out.println("2. Tìm kiếm khách hàng qua ID.");
+            System.out.println("3. Xóa khách hàng qua ID.");
+            System.out.println("4. Thoát.");
+            choiceCustomer = Integer.parseInt(scanner.nextLine());
+            switch (choiceCustomer) {
+                case 1:
+                    customerManage.displayAll();
+                    break;
+                case 2:
+                    searchCustomerByID();
+                    break;
+                case 3:
+                    deleteCustomerByID();
+                case 4:
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ!");
+            }
+        } while (choiceCustomer != 4);
+    }
+
+    public void menuAdmin2() {
+        int choiceProduct;
+        do {
+            System.out.println("------------------------------------");
+            System.out.println("---------- XIN CHÀO SẾP ------------");
+            System.out.println("------------------------------------");
+            System.out.println("1. Thêm sản phẩm.");
+            System.out.println("2. Tìm kiếm sản phẩm qua mã sản phẩm.");
+            System.out.println("3. Tìm kiếm sản phẩm theo tên bât kỳ.");
+            System.out.println("4. Hiển thị toàn bộ kho hàng.");
+            System.out.println("5. Sửa thông tin sản phẩm.");
+            System.out.println("6. Xóa sản phẩm.");
+            System.out.println("7. Thoát.");
+            choiceProduct = Integer.parseInt(scanner.nextLine());
+            switch (choiceProduct) {
+                case 1:
+                    createProduct();
+                    break;
+                case 2:
+                    searchProductByID();
+                    break;
+                case 3:
+                    searchProductByName();
+                    break;
+                case 4:
+                    productManage.displayAll();
+                    break;
+                case 5:
+                    updateProductByID();
+                    break;
+                case 6:
+                    deleteProductByID();
+                    break;
+                case 7:
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ!");
+                    break;
+            }
+        } while (choiceProduct != 7);
+    }
+
+    public void menuAdmin3() {
+        int choiceOrder;
+        do {
+            System.out.println("------------------------------------");
+            System.out.println("---------- XIN CHÀO SẾP ------------");
+            System.out.println("------------------------------------");
+            System.out.println("1. Xem toàn bộ đơn hàng.");
+            System.out.println("2. Tìm kiếm đơn hàng qua mã đơn hàng.");
+            System.out.println("3. Tìm kiếm đơn hàng qua ID khách hàng.");
+            System.out.println("4. Thoát.");
+            choiceOrder = Integer.parseInt(scanner.nextLine());
+            switch (choiceOrder) {
+                case 1:
+                    orderManage.displayAll();
+                    break;
+                case 2:
+                    System.out.println("Nhập mã đơn hàng muốn tìm: ");
+                    int idOrder = Integer.parseInt(scanner.nextLine());
+                    orderManage.displayOrderByID(orderManage.searchByID(idOrder));
+                    break;
+                case 3:
+                    System.out.println("Nhập ID khách hàng: ");
+                    int idCustomerOfOrder = Integer.parseInt(scanner.nextLine());
+                    ArrayList<Order> orders = orderManage.searchOrderOfCustomerByID(idCustomerOfOrder);
+                    for (Order order : orders) {
+                        orderManage.displayOrder(order);
+                    }
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ!");
+            }
+        } while (choiceOrder != 4);
     }
 
     public void searchCustomerByID() {
@@ -345,6 +236,168 @@ public class MenuManage {
         String idDeleteProduct = scanner.nextLine();
         productManage.delete(productManage.searchByID(idDeleteProduct));
         productManage.displayAll();
+    }
+
+    //HẾT CÁC LỰA CHỌN CỦA ADMIN ******************************************************
+
+    //CÁC LỰA CHỌN CỦA CUSTOMER *******************************************************
+
+    public void menuCustomer1(Customer customer) {
+        int choiceChangeInfo;
+        do {
+            System.out.println(customer);
+            System.out.println("------------------------------");
+            System.out.println("1. Thay đổi thông tin cá nhân.");
+            System.out.println("2. Thay đổi thông tin tài khoản.");
+            System.out.println("3. Hoàn thành.");
+            choiceChangeInfo = Integer.parseInt(scanner.nextLine());
+            switch (choiceChangeInfo) {
+                case 1:
+                    customerManage.update(customer);
+                    break;
+                case 2:
+                    Account account = customer.getAccount();
+                    accountManage.update(account);
+                    break;
+                case 3:
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ!");
+                    break;
+            }
+        } while (choiceChangeInfo != 3);
+    }
+
+    public void menuCustomer2(Customer customer) {
+        int choiceProduct;
+        do {
+            System.out.println("--------------------------------------------------------------");
+            System.out.println("---------- CHÀO MỪNG BẠN ĐẾN VỚI BÁCH HÓA VÔ DỤNG ------------");
+            System.out.println("--------------------------------------------------------------");
+            System.out.println("1. Hiển thị toàn bộ sản phẩm.");
+            System.out.println("2. Tìm kiếm sản phẩm qua mã sản phẩm.");
+            System.out.println("3. Tìm kiếm sản phẩm theo tên bât kỳ.");
+            System.out.println("4. Thêm sản phẩm vào giỏ hàng");
+            System.out.println("5. Xem giỏ hàng.");
+            System.out.println("6. Kiểm tra tình trạng đơn hàng.");
+            System.out.println("7. Thoát.");
+            choiceProduct = Integer.parseInt(scanner.nextLine());
+            switch (choiceProduct) {
+                case 1:
+                    productManage.displayAll();
+                    break;
+                case 2:
+                    searchProductByID();
+                    break;
+                case 3:
+                    searchProductByName();
+                    break;
+                case 4:
+                    addProductInCart();
+                    break;
+                case 5:
+                    displayCart(customer);
+                    break;
+                case 6:
+                    checkOrder(customer);
+                    break;
+                case 7:
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ!");
+                    break;
+            }
+        } while (choiceProduct != 7);
+    }
+
+    public void addProductInCart() {
+        System.out.println("Nhập mã sản phẩm muốn mua:");
+        String idOrderProduct = scanner.nextLine();
+        Product product = productManage.searchByID(idOrderProduct);
+        while (!productManage.checkIDProduct(idOrderProduct)) {
+            System.out.println("Mã sản phẩm không tồn tại.");
+            System.out.println("Nhập lại mã sản phẩm:");
+            idOrderProduct = scanner.nextLine();
+        }
+        System.out.println("Số lượng muốn mua: ");
+        int amountOrderProduct = Integer.parseInt(scanner.nextLine());
+        while (product.getAmount() < amountOrderProduct) {
+            System.out.println("Số lượng vượt quá kho hàng có!");
+            System.out.println("Nhập lại số lượng muốn mua (<" + product.getAmount() + "): ");
+            amountOrderProduct = Integer.parseInt(scanner.nextLine());
+        }
+        if (orderManage.checkProductInCart(idOrderProduct) != null) {
+            Product productExist = orderManage.checkProductInCart(idOrderProduct);
+            int amountOrderProductExist = productExist.getAmount();
+            while (product.getAmount() < (amountOrderProduct + amountOrderProductExist)) {
+                System.out.println("Số lượng vượt quá kho hàng có!");
+                System.out.println("Nhập lại số lượng muốn mua (<" + (product.getAmount() - amountOrderProductExist) + "): ");
+                amountOrderProduct = Integer.parseInt(scanner.nextLine());
+            }
+            productExist.setAmount(productExist.getAmount() + amountOrderProduct);
+            System.out.println("Đã thêm sản phẩm vào giỏ hàng.");
+            System.out.println("Đến giỏ hàng để tiến hành thanh toán.");
+        } else {
+            orderManage.addToCart(product, amountOrderProduct);
+        }
+    }
+
+    public void displayCart(Customer customer) {
+        if (orderManage.getOrderProducts().size() == 0) {
+            System.out.println("Bạn chưa có sản phẩm nào trong giỏ hàng!");
+            System.out.println("Hãy quay lại mua sắm nhé.");
+        } else {
+            orderManage.displayCart();
+            System.out.println("1. Đặt hàng.");
+            System.out.println("2. Xóa giỏ hàng.");
+            System.out.println("3. Tiếp tục mua sắm.");
+            int choiceOrder = Integer.parseInt(scanner.nextLine());
+            switch (choiceOrder) {
+                case 1:
+                    Order order = orderManage.creatOrder(customer);
+                    orderManage.order(order);
+                    orderManage.setOrderProducts(new ArrayList<>());
+                    System.out.println("1. Thanh toán.");
+                    System.out.println("2. Thanh toán sau.");
+                    int choicePay = Integer.parseInt(scanner.nextLine());
+                    if (choicePay == 1) {
+                        for (Order orderInList : OrderManage.orderArrayList) {
+                            if ((order.getId() == orderInList.getId())) {
+                                orderManage.pay(orderInList);
+                            }
+                        }
+                    }
+                    break;
+                case 2:
+                    orderManage.setOrderProducts(new ArrayList<>());
+                    System.out.println("Đã xóa giỏ hàng.");
+                    break;
+                case 3:
+                    break;
+            }
+        }
+    }
+
+    public void checkOrder(Customer customer) {
+        ArrayList<Order> orders = orderManage.searchOrderOfCustomerByID(customer.getId());
+        for (Order order : orders) {
+            orderManage.displayOrder(order);
+        }
+        for (Order order : orders) {
+            if (order.getStatus().equals("Chưa thanh toán!")) {
+                System.out.println("Đơn hàng " + order.getId() + " của bạn chưa được thanh toán.");
+                System.out.println("Bạn có muốn thanh toán không: ");
+                System.out.println("1. Có.");
+                System.out.println("2. Không.");
+                System.out.println("3. Hủy đơn.");
+                int choicePayOrder = Integer.parseInt(scanner.nextLine());
+                if (choicePayOrder == 1) {
+                    orderManage.pay(order);
+                } else if (choicePayOrder == 3) {
+                    orderManage.delete(order);
+                }
+            }
+        }
     }
 }
 

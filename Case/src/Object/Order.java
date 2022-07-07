@@ -1,7 +1,9 @@
 package Object;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Order implements Serializable {
     public static int ID_ORDER = 1;
@@ -60,13 +62,21 @@ public class Order implements Serializable {
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
+    public String changeBalanceOrder(){
+        int a = totalPrice;
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+        String accountBalance = numberFormat.format(a);
+        return accountBalance;
+    }
+
 
     @Override
     public String toString() {
         return  "Mã đơn hàng: " + id +
                 "\n    " + customer +
                 "\n    Đơn hàng: \n     " + products +
-                "\n    Tổng đơn: " + totalPrice + " VND" +
+                "\n    Tổng đơn: " + changeBalanceOrder() +
                 ", Trạng thái đơn hàng: '" + status + '\'' +
                 '}';
     }

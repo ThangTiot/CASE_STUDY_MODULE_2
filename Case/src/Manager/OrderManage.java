@@ -3,7 +3,9 @@ package Manager;
 import Object.*;
 import System.CRUD;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class OrderManage implements CRUD<Order> {
@@ -118,12 +120,19 @@ public class OrderManage implements CRUD<Order> {
         }
         return total;
     }
+    public String changeBalanceTotalPrice(){
+        int a = totalPrice();
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+        String accountBalance = numberFormat.format(a);
+        return accountBalance;
+    }
 
     public void displayCart() {
         for (Product product : orderProducts) {
             System.out.println(product);
         }
-        System.out.println("Tổng tiền: " + totalPrice() + " VND");
+        System.out.println("Tổng tiền: " + changeBalanceTotalPrice());
     }
 
     public void displayOrderByID(Order order) {
@@ -135,7 +144,7 @@ public class OrderManage implements CRUD<Order> {
         for (Product product : order.getProducts()) {
             System.out.println("    " + product);
         }
-        System.out.println("    Tổng đơn: " + order.getTotalPrice() + " VND ");
+        System.out.println("    Tổng đơn: " + order.changeBalanceOrder());
         System.out.println("    Tình trạng đơn hàng: " + order.getStatus());
     }
     public ArrayList<Order> searchOrderOfCustomerByID(int id) {
