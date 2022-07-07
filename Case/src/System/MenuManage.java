@@ -104,7 +104,7 @@ public class MenuManage {
                         System.out.println("---------- XIN CHÀO SẾP ------------");
                         System.out.println("1. Xem toàn bộ đơn hàng.");
                         System.out.println("2. Tìm kiếm đơn hàng qua mã đơn hàng.");
-                        System.out.println("3. Hủy đơn hàng theo mã đơn hàng.");
+                        System.out.println("3. Tìm kiếm đơn hàng qua ID khách hàng.");
                         System.out.println("4. Thoát.");
                         choiceOrder = Integer.parseInt(scanner.nextLine());
                         switch (choiceOrder) {
@@ -117,9 +117,12 @@ public class MenuManage {
                                 orderManage.displayOrderByID(orderManage.searchByID(idOrder));
                                 break;
                             case 3:
-                                System.out.println("Nhập mã đơn hàng muốn hủy: ");
-                                int idCancer = Integer.parseInt(scanner.nextLine());
-                                orderManage.delete(orderManage.searchByID(idCancer));
+                                System.out.println("Nhập ID khách hàng: ");
+                                int idCustomerOfOrder = Integer.parseInt(scanner.nextLine());
+                                ArrayList<Order> orders = orderManage.searchOrderOfCustomerByID(idCustomerOfOrder);
+                                for (Order order : orders) {
+                                    orderManage.displayOrder(order);
+                                }
                                 break;
                             case 4:
                                 break;
@@ -215,7 +218,7 @@ public class MenuManage {
                                     }
                                     productExist.setAmount(productExist.getAmount() + amountOrderProduct);
                                 } else {
-                                    orderManage.addToCart(product,amountOrderProduct);
+                                    orderManage.addToCart(product, amountOrderProduct);
                                 }
                                 break;
                             case 5:
@@ -238,7 +241,7 @@ public class MenuManage {
                                             int choicePay = Integer.parseInt(scanner.nextLine());
                                             if (choicePay == 1) {
                                                 for (Order orderInList : OrderManage.orderArrayList) {
-                                                    if (orderInList.getCustomer().getId() == customer.getId()) {
+                                                    if ((order.getId() == orderInList.getId())) {
                                                         orderManage.pay(orderInList);
                                                     }
                                                 }
@@ -250,25 +253,26 @@ public class MenuManage {
                                             break;
                                         case 3:
                                             break;
-                                }
+                                    }
                                 }
                                 break;
                             case 6:
-                                for (Order orderInList : OrderManage.orderArrayList) {
-                                    if (orderInList.getCustomer().getId() == customer.getId()) {
-                                        orderManage.displayOrder(orderInList);
-                                        if (orderInList.getStatus().equals("Chưa thanh toán!")) {
-                                            System.out.println("Đơn hàng " + orderInList.getId() + " của bạn chưa được thanh toán.");
-                                            System.out.println("Bạn có muốn thanh toán không: ");
-                                            System.out.println("1. Có.");
-                                            System.out.println("2. Không.");
-                                            System.out.println("3. Hủy đơn.");
-                                            int choicePayOrder = Integer.parseInt(scanner.nextLine());
-                                            if (choicePayOrder == 1) {
-                                                orderManage.pay(orderInList);
-                                            } else if (choicePayOrder == 3){
-                                                orderManage.delete(orderInList);
-                                            }
+                                ArrayList<Order> orders = orderManage.searchOrderOfCustomerByID(customer.getId());
+                                for (Order order : orders) {
+                                    orderManage.displayOrder(order);
+                                }
+                                for (Order order : orders) {
+                                    if (order.getStatus().equals("Chưa thanh toán!")) {
+                                        System.out.println("Đơn hàng " + order.getId() + " của bạn chưa được thanh toán.");
+                                        System.out.println("Bạn có muốn thanh toán không: ");
+                                        System.out.println("1. Có.");
+                                        System.out.println("2. Không.");
+                                        System.out.println("3. Hủy đơn.");
+                                        int choicePayOrder = Integer.parseInt(scanner.nextLine());
+                                        if (choicePayOrder == 1) {
+                                            orderManage.pay(order);
+                                        } else if (choicePayOrder == 3) {
+                                            orderManage.delete(order);
                                         }
                                     }
                                 }
@@ -313,6 +317,7 @@ public class MenuManage {
         String id = scanner.nextLine();
         System.out.println(productManage.searchByID(id));
     }
+
     public void searchProductByName() {
         System.out.println("Nhập tên sản phẩm: ");
         String name = scanner.nextLine();

@@ -133,10 +133,19 @@ public class OrderManage implements CRUD<Order> {
     public void displayOrder(Order order) {
         System.out.println("Mã đơn hàng: " + order.getId());
         for (Product product : order.getProducts()) {
-            System.out.println(product);
+            System.out.println("    " + product);
         }
-        System.out.println("Tổng đơn: " + order.getTotalPrice() + " VND ");
-        System.out.println("Tình trạng đơn hàng: " + order.getStatus());
+        System.out.println("    Tổng đơn: " + order.getTotalPrice() + " VND ");
+        System.out.println("    Tình trạng đơn hàng: " + order.getStatus());
+    }
+    public ArrayList<Order> searchOrderOfCustomerByID(int id) {
+        ArrayList<Order> orders = new ArrayList<>();
+        for (Order order : orderArrayList) {
+            if (order.getCustomer().getId() == id) {
+                orders.add(order);
+            }
+        }
+        return orders;
     }
 
     public ArrayList<Product> getOrderProducts() {
