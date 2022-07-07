@@ -192,6 +192,7 @@ public class MenuManage {
                             case 4:
                                 System.out.println("Nhập mã sản phẩm muốn mua:");
                                 String idOrderProduct = scanner.nextLine();
+                                Product product = productManage.searchByID(idOrderProduct);
                                 while (!productManage.checkIDProduct(idOrderProduct)) {
                                     System.out.println("Mã sản phẩm không tồn tại.");
                                     System.out.println("Nhập lại mã sản phẩm:");
@@ -199,7 +200,23 @@ public class MenuManage {
                                 }
                                 System.out.println("Số lượng muốn mua: ");
                                 int amountOrderProduct = Integer.parseInt(scanner.nextLine());
-                                orderManage.addToCart(productManage.searchByID(idOrderProduct),amountOrderProduct);
+                                while (product.getAmount() < amountOrderProduct) {
+                                    System.out.println("Số lượng vượt quá kho hàng có!");
+                                    System.out.println("Nhập lại số lượng muốn mua (<" + product.getAmount() + "): ");
+                                    amountOrderProduct = Integer.parseInt(scanner.nextLine());
+                                }
+                                if (orderManage.checkProductInCart(idOrderProduct) != null) {
+                                    Product productExist = orderManage.checkProductInCart(idOrderProduct);
+                                    int amountOrderProductExist = productExist.getAmount();
+                                    while (product.getAmount() < (amountOrderProduct + amountOrderProductExist)) {
+                                        System.out.println("Số lượng vượt quá kho hàng có!");
+                                        System.out.println("Nhập lại số lượng muốn mua (<" + (product.getAmount() - amountOrderProductExist) + "): ");
+                                        amountOrderProduct = Integer.parseInt(scanner.nextLine());
+                                    }
+                                    productExist.setAmount(productExist.getAmount() + amountOrderProduct);
+                                } else {
+                                    orderManage.addToCart(product,amountOrderProduct);
+                                }
                                 break;
                             case 5:
                                 if (orderManage.getOrderProducts().size() == 0) {

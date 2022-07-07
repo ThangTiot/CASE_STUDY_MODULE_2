@@ -75,6 +75,14 @@ public class OrderManage implements CRUD<Order> {
         }
         return null;
     }
+    public Product checkProductInCart(String id) {
+        for (Product product : orderProducts) {
+            if (product.getId().equals(id)) {
+                return product;
+            }
+        }
+        return null;
+    }
 
     public void addToCart(Product product, int amount) {
         Product orderProduct = product.clone();
