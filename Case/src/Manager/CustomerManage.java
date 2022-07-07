@@ -132,7 +132,7 @@ public class CustomerManage implements CRUD<Customer>{
         if (choice == 1) {
             customerArrayList.remove(customer);
             System.out.println("Xóa khách hàng thành công!");
+            readAndWriteCustomer.write(path,customerArrayList);
         }
-        readAndWriteCustomer.write(path,customerArrayList);
     }
 }

@@ -1,21 +1,24 @@
 package Object;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Order {
+public class Order implements Serializable {
     public static int ID_ORDER = 1;
     private int id;
     private Customer customer;
-    private ArrayList<Product> product;
+    private ArrayList<Product> products;
+    private int totalPrice;
     private String status = "Chưa thanh toán!";
 
     public Order() {
     }
 
-    public Order(Customer customer, ArrayList<Product> product) {
+    public Order(Customer customer, ArrayList<Product> products, int totalPrice) {
         this.id = ID_ORDER++;
         this.customer = customer;
-        this.product = product;
+        this.products = products;
+        this.totalPrice = totalPrice;
     }
 
     public int getId() {
@@ -34,12 +37,12 @@ public class Order {
         this.customer = customer;
     }
 
-    public ArrayList<Product> getProduct() {
-        return product;
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(ArrayList<Product> product) {
-        this.product = product;
+    public void setProducts(ArrayList<Product> product) {
+        this.products = product;
     }
 
     public String getStatus() {
@@ -50,13 +53,21 @@ public class Order {
         this.status = status;
     }
 
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", customer=" + customer +
-                ", product=" + product +
-                ", status='" + status + '\'' +
+        return  "Mã đơn hàng: " + id +
+                "\n    " + customer +
+                "\n    Đơn hàng: \n     " + products +
+                "\n    Tổng đơn: " + totalPrice + " VND" +
+                ", Trạng thái đơn hàng: '" + status + '\'' +
                 '}';
     }
 }

@@ -2,7 +2,7 @@ package Object;
 
 import java.io.Serializable;
 
-public class Product implements Comparable<Product>, Serializable {
+public class Product implements Comparable<Product>, Serializable, Cloneable {
     private String id;
     private String name;
     private int price;
@@ -54,14 +54,21 @@ public class Product implements Comparable<Product>, Serializable {
     public int compareTo(Product product) {
         return this.price - product.getPrice();
     }
+    public Product clone(){
+        try {
+            return (Product) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", amount=" + amount +
+                "ID: " + id +
+                ", Tên: '" + name + '\'' +
+                ", Giá: " + price + " VND" +
+                ", Số lượng: " + amount +
                 '}';
     }
 }

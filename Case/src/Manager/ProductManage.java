@@ -80,8 +80,8 @@ public class ProductManage implements CRUD<Product> {
         if (choice == 1) {
             productArrayList.remove(product);
             System.out.println("Xóa sản phẩm thành công!");
+            readAndWriteProduct.write(path,productArrayList);
         }
-        readAndWriteProduct.write(path,productArrayList);
     }
     public Product searchByID(String id) {
         for (Product product : productArrayList) {

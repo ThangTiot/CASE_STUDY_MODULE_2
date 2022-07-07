@@ -73,12 +73,12 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", phoneNumber=" + phoneNumber +
-                ", account=" + account +
+        return "Customer {" +
+                "ID: " + id +
+                ", Tên: '" + name + '\'' +
+                ", Tuổi: " + age +
+                ", Số điện thoại: " + phoneNumber +
+                ", Tài khoản: " + account +
                 '}';
     }
 }
