@@ -70,12 +70,19 @@ public class Order implements Serializable {
         return accountBalance;
     }
 
+    public String displayProducts() {
+        String s = "";
+        for (Product product : products) {
+            s += (product + "\n     ");
+        }
+        return s;
+    }
 
     @Override
     public String toString() {
         return  "Mã đơn hàng: " + id +
                 "\n    " + customer +
-                "\n    Đơn hàng: \n     " + products +
+                "\n    Đơn hàng: \n     " + displayProducts() +
                 "\n    Tổng đơn: " + changeBalanceOrder() +
                 ", Trạng thái đơn hàng: '" + status + '\'' +
                 '}';
