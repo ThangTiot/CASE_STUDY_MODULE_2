@@ -3,10 +3,8 @@ package System;
 import Manager.CustomerManage;
 import Object.Customer;
 
-import java.io.PrintStream;
 import java.util.Scanner;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.sym.error;
 
 public class Main {
     public static void main(String[] args) {

@@ -293,6 +293,7 @@ public class MenuManage {
                     searchProductByName();
                     break;
                 case 4:
+                    productManage.displayAll();
                     addProductInCart();
                     break;
                 case 5:
@@ -362,10 +363,13 @@ public class MenuManage {
                     int choicePay = Integer.parseInt(scanner.nextLine());
                     if (choicePay == 1) {
                         for (Order orderInList : OrderManage.orderArrayList) {
-                            if ((order.getId() == orderInList.getId())) {
+                            if ((order.getID() == orderInList.getID())) {
                                 orderManage.pay(orderInList);
                             }
                         }
+                    } else {
+                        System.out.println("Đơn hàng của bạn sẽ bị hủy sau 30s nếu không thanh toán!");
+                        order.start();
                     }
                     break;
                 case 2:
@@ -385,7 +389,7 @@ public class MenuManage {
         }
         for (Order order : orders) {
             if (order.getStatus().equals("Chưa thanh toán!")) {
-                System.out.println("Đơn hàng " + order.getId() + " của bạn chưa được thanh toán.");
+                System.out.println("Đơn hàng " + order.getID() + " của bạn chưa được thanh toán.");
                 System.out.println("Bạn có muốn thanh toán không: ");
                 System.out.println("1. Có.");
                 System.out.println("2. Không.");

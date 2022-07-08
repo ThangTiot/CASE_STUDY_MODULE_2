@@ -18,7 +18,7 @@ public class OrderManage implements CRUD<Order> {
 
     public OrderManage() {
         if (orderArrayList.size() != 0) {
-            Order.ID_ORDER = orderArrayList.get(orderArrayList.size() - 1).getId() + 1;
+            Order.ID_ORDER = orderArrayList.get(orderArrayList.size() - 1).getID() + 1;
         }
         scanner = new Scanner(System.in);
         orderProducts = new ArrayList<>();
@@ -71,7 +71,7 @@ public class OrderManage implements CRUD<Order> {
     @Override
     public Order searchByID(int id) {
         for (Order order : orderArrayList) {
-            if (order.getId() == id) {
+            if (order.getID() == id) {
                 return order;
             }
         }
@@ -140,7 +140,7 @@ public class OrderManage implements CRUD<Order> {
     }
 
     public void displayOrder(Order order) {
-        System.out.println("* Mã đơn hàng: " + order.getId());
+        System.out.println("* Mã đơn hàng: " + order.getID());
         for (Product product : order.getProducts()) {
             System.out.println("    " + product);
         }

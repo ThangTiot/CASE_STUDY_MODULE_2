@@ -1,11 +1,14 @@
 package Object;
 
+import Manager.OrderManage;
+
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Order implements Serializable {
+
+public class Order extends Thread implements Serializable {
     public static int ID_ORDER = 1;
     private int id;
     private Customer customer;
@@ -23,7 +26,7 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 
@@ -81,6 +84,24 @@ public class Order implements Serializable {
             }
         }
         return s;
+    }
+
+    @Override
+    public void run() {
+        try {
+            sleep(30000);
+            if (this.status.equals("Chưa thanh toán!")) {
+                for (Order orderInList : OrderManage.orderArrayList) {
+                    if ((this.id == orderInList.getID())) {
+                        OrderManage.orderArrayList.remove(orderInList);
+                        System.out.println("Đơn hàng của bạn đã bị hủy do quá thời hạn thanh toán!");
+                        break;
+                    }
+                }
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
