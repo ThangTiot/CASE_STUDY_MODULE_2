@@ -25,6 +25,7 @@ public class OrderManage implements CRUD<Order> {
         productManage = new ProductManage();
     }
 
+//    Không dùng.
     @Override
     public Order creat() {
 
@@ -38,6 +39,7 @@ public class OrderManage implements CRUD<Order> {
     }
 
 
+//    Thêm order vào list.
     @Override
     public void add(Order order) {
         orderArrayList.add(order);
@@ -77,6 +79,7 @@ public class OrderManage implements CRUD<Order> {
         }
         return null;
     }
+//    Kiểm tra giỏ hàng.
     public Product checkProductInCart(String id) {
         for (Product product : orderProducts) {
             if (product.getId().equals(id)) {
@@ -86,6 +89,7 @@ public class OrderManage implements CRUD<Order> {
         return null;
     }
 
+//    Thêm vào giỏ hàng. thêm vào list tạm.
     public void addToCart(Product product, int amount) {
         Product orderProduct = product.clone();
         orderProduct.setAmount(amount);
@@ -106,6 +110,7 @@ public class OrderManage implements CRUD<Order> {
         readAndWriteOrder.write(path, orderArrayList);
     }
 
+//    Đặt hàng trước khi thanh toán.
     public void order(Order order) {
         add(order);
         System.out.println("Đặt hàng thành công!");
@@ -135,6 +140,7 @@ public class OrderManage implements CRUD<Order> {
         System.out.println("- Tổng tiền: " + changeBalanceTotalPrice());
     }
 
+//    Tìm kiếm đơn hàng theo mã đơn hàng.
     public void displayOrderByID(Order order) {
         System.out.println(order);
     }
@@ -147,6 +153,8 @@ public class OrderManage implements CRUD<Order> {
         System.out.println("    - Tổng đơn: " + order.changeBalanceOrder());
         System.out.println("    - Tình trạng đơn hàng: " + order.getStatus());
     }
+
+//    Tìm kiểm đơn hàng theo mã khách hàng.
     public ArrayList<Order> searchOrderOfCustomerByID(int id) {
         ArrayList<Order> orders = new ArrayList<>();
         for (Order order : orderArrayList) {

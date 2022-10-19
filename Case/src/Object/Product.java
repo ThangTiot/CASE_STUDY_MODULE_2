@@ -52,6 +52,7 @@ public class Product implements Comparable<Product>, Serializable, Cloneable {
         this.amount = amount;
     }
 
+//    Hàm sắp xếp theo giá tăng dần.
     @Override
     public int compareTo(Product product) {
         return this.price - product.getPrice();
@@ -63,6 +64,7 @@ public class Product implements Comparable<Product>, Serializable, Cloneable {
             return null;
         }
     }
+//    Thay đổi định dạng của tiền.
     public String changeBalanceProduct(){
         int a = price;
         Locale locale = new Locale("vi", "VN");
